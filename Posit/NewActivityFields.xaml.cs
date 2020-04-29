@@ -42,13 +42,21 @@ namespace Posit
         {
             Debug.Print("add");
             string name = (activityNameTextBox.DataContext as ActivityNameViewModel).ActivityName;
+            if (name == null) { return; }
             DateTime? time = (futureDatePickerWidget.DataContext as PickersViewModel).FutureValidatingDate;
             AddClicked(new Activity { ActivityName = name, ActivityTime = (DateTime) time });
+            Clear();
         }
 
         private void OnClickClose(object sender, RoutedEventArgs e)
         {
             Debug.Print("close");
+            Clear();
+        }
+
+        private void Clear()
+        {
+            activityNameTextBox.Clear();
         }
 
     }

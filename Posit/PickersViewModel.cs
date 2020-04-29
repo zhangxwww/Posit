@@ -16,6 +16,7 @@ namespace Posit
         {
             Date = DateTime.Now;
             Time = DateTime.Now;
+            FutureValidatingDate = DateTime.Now;
         }
 
         public DateTime Date
