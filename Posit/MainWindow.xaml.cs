@@ -50,7 +50,14 @@ namespace Posit
 
         private void AddActivity(Activity activity)
         {
-            _activityList.Add(activity);
+            ObservableCollection<Activity> tmp = new ObservableCollection<Activity>(_activityList);
+            tmp.Add(activity);
+            tmp = new ObservableCollection<Activity>(tmp.OrderBy(item => item.ActivityTime));
+            _activityList.Clear();
+            foreach (Activity a in tmp)
+            {
+                _activityList.Add(a);
+            }
             newActivityWidget.Visibility = Visibility.Collapsed;
             addButton.Visibility = Visibility.Visible;
         }
