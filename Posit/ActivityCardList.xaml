@@ -19,11 +19,20 @@
                         Width="200"
                         Padding="8"
                         UniformCornerRadius="6">
-                        <TextBlock
-                            Margin="16 16 12 8"
-                            FontSize="16"
-                            Text="{Binding Path=ActivityName,
-                                UpdateSourceTrigger=PropertyChanged}"/>
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Margin="16 0 16 8">
+                            <TextBlock
+                                Margin="16 16 12 8"
+                                FontSize="16"
+                                Text="{Binding Path=ActivityName,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock
+                                Margin="16 16 12 8"
+                                FontSize="16"
+                                Text="{Binding Path=LastDays,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
                     </materialDesign:Card>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

@@ -12,6 +12,7 @@ namespace Posit
     {
         private DateTime _activityTime;
         private string _activityName;
+        private string _lastDays;
 
         public Activity() { }
 
@@ -23,6 +24,22 @@ namespace Posit
                 _activityName = value;
                 OnPropertyChanged();
             }
+        }
+
+        public DateTime ActivityTime
+        {
+            set
+            {
+                _activityTime = value;
+                TimeSpan span = _activityTime - DateTime.Now;
+                Int32 last = span.Days;
+                _lastDays = $"{last}天";
+            }
+        }
+
+        public string LastDays
+        {
+            get { return _lastDays; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

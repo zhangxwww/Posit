@@ -28,8 +28,8 @@ namespace Posit
             {
                 ActivityList = new ObservableCollection<Activity>
                 {
-                    new Activity { ActivityName="写作业" },
-                    new Activity { ActivityName="hello world" }
+                    new Activity { ActivityName="写作业", ActivityTime=DateTime.Parse("2020/5/1") },
+                    new Activity { ActivityName="hello world", ActivityTime=DateTime.Parse("2020/6/1") }
                 }
             };
         }
