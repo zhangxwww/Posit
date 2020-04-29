@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,21 +16,13 @@ using System.Windows.Shapes;
 namespace Posit
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// ActivityCardList.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ActivityCardList : UserControl
     {
-        public MainWindow ()
+        public ActivityCardList ()
         {
             InitializeComponent();
-            activityCardListWidget.activityCardList.DataContext = new ActivityDataModel
-            {
-                ActivityList = new ObservableCollection<Activity>
-                {
-                    new Activity { ActivityName="写作业" },
-                    new Activity { ActivityName="hello world" }
-                }
-            };
         }
     }
 }
