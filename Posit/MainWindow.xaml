@@ -7,7 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <local:ActivityCardList 
-            x:Name="activityCardListWidget"/>
+        <StackPanel
+            Margin="16 16 16 16">
+            <local:ActivityCardList 
+                x:Name="activityCardListWidget"/>
+            <local:NewActivityFields
+                x:Name="newActivityWidget"/>
+        </StackPanel>
     </Grid>
 </Window>
