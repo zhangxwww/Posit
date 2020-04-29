@@ -21,17 +21,33 @@ namespace Posit
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<Activity> _activityList;
+
         public MainWindow ()
         {
             InitializeComponent();
+            InitActivityList();
+
             activityCardListWidget.activityCardList.DataContext = new ActivityDataModel
             {
-                ActivityList = new ObservableCollection<Activity>
-                {
-                    new Activity { ActivityName="写作业", ActivityTime=DateTime.Parse("2020/5/1") },
-                    new Activity { ActivityName="hello world", ActivityTime=DateTime.Parse("2020/6/1") }
-                }
+                ActivityList = _activityList
             };
+
+            newActivityWidget.AddClicked += AddActivity;
+        }
+
+        private void InitActivityList()
+        {
+            _activityList = new ObservableCollection<Activity>
+            {
+                new Activity { ActivityName="写作业", ActivityTime=DateTime.Parse("2020/5/1") },
+                new Activity { ActivityName="hello world", ActivityTime=DateTime.Parse("2020/6/1") }
+            };
+        }
+
+        private void AddActivity(Activity activity)
+        {
+            _activityList.Add(activity);
         }
     }
 }

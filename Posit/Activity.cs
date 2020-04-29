@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Posit
 {
-    class Activity : INotifyPropertyChanged
+    public class Activity : INotifyPropertyChanged
     {
         private DateTime _activityTime;
         private string _activityName;

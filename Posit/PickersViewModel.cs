@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace wpfdemo
+namespace Posit
 {
     public class PickersViewModel : INotifyPropertyChanged
     {
@@ -57,8 +57,11 @@ namespace wpfdemo
             }
             set
             {
-                _futureValidatingDate = value;
-                OnPropertyChanged();
+                if (value != null)
+                {
+                    _futureValidatingDate = value;
+                    OnPropertyChanged();
+                }
             }
         }
 

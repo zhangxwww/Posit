@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using wpfdemo;
 
 namespace Posit
 {
@@ -29,6 +29,27 @@ namespace Posit
 
             futureDatePickerWidget.BlackoutDates.AddDatesInPast();
             futureDatePickerWidget.DataContext = new PickersViewModel();
+
+            addButton.Click += OnClickAdd;
+            closeButton.Click += OnClickClose;
         }
+
+        public delegate void AddActivity (Activity activity);
+
+        public event AddActivity AddClicked;
+
+        private void OnClickAdd(object sender, RoutedEventArgs e)
+        {
+            Debug.Print("add");
+            string name = (activityNameTextBox.DataContext as ActivityNameViewModel).ActivityName;
+            DateTime? time = (futureDatePickerWidget.DataContext as PickersViewModel).FutureValidatingDate;
+            AddClicked(new Activity { ActivityName = name, ActivityTime = (DateTime) time });
+        }
+
+        private void OnClickClose(object sender, RoutedEventArgs e)
+        {
+            Debug.Print("close");
+        }
+
     }
 }
