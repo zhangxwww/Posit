@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Posit"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -11,6 +12,15 @@
             Margin="16 16 16 16">
             <local:ActivityCardList 
                 x:Name="activityCardListWidget"/>
+            <Button
+                x:Name="addButton"
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                <materialDesign:PackIcon
+                    Kind="AddThick"
+                    Height="24"
+                    Width="24" />
+            </Button>
             <local:NewActivityFields
                 x:Name="newActivityWidget"/>
         </StackPanel>

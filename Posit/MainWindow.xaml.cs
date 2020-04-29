@@ -34,6 +34,9 @@ namespace Posit
             };
 
             newActivityWidget.AddClicked += AddActivity;
+            newActivityWidget.Visibility = Visibility.Collapsed;
+
+            addButton.Click += OnAddButtonClick;
         }
 
         private void InitActivityList()
@@ -48,6 +51,14 @@ namespace Posit
         private void AddActivity(Activity activity)
         {
             _activityList.Add(activity);
+            newActivityWidget.Visibility = Visibility.Collapsed;
+            addButton.Visibility = Visibility.Visible;
+        }
+
+        private void OnAddButtonClick(object sender, RoutedEventArgs e)
+        {
+            newActivityWidget.Visibility = Visibility.Visible;
+            addButton.Visibility = Visibility.Collapsed;
         }
     }
 }
