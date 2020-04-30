@@ -11,6 +11,7 @@ namespace Posit
 {
     public class Activity : INotifyPropertyChanged
     {
+        private Int32 _id;
         private DateTime _activityTime;
         private string _activityName;
         private Int32 _lastDays;
@@ -24,6 +25,12 @@ namespace Posit
             _lastDays = span.Days;
             _lastDaysStr = $"{_lastDays}天";
             OnPropertyChanged("LastDaysStr");
+        }
+
+        public Int32 ID
+        {
+            get { return _id; }
+            set { _id = value; }
         }
 
         public string ActivityName

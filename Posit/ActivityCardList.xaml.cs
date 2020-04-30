@@ -22,6 +22,7 @@ namespace Posit
     public partial class ActivityCardList : UserControl
     {
         private ObservableCollection<Activity> _activityList;
+        private Int32 _lastUsedId = 0;
         private Storage storage;
 
         public ActivityCardList ()
@@ -32,15 +33,9 @@ namespace Posit
 
         private void InitActivityList()
         {
-            /*
-            _activityList = new ObservableCollection<Activity>
-            {
-                new Activity { ActivityName="写作业", ActivityTime=DateTime.Parse("2020/5/1") },
-                new Activity { ActivityName="hello world", ActivityTime=DateTime.Parse("2020/6/1") }
-            };
-            */
             storage = new Storage();
             _activityList = storage.Activities;
+            _lastUsedId = storage.MaxId;
             activityCardList.DataContext = new ActivityDataModel
             {
                 ActivityList = _activityList
@@ -50,6 +45,7 @@ namespace Posit
 
         public void Add(Activity activity)
         {
+            activity.ID = ++_lastUsedId;
             _activityList.Add(activity);
             SortActivitiesByDate();
             storage.Activities = _activityList;

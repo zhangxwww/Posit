@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Configuration;
 using System.Diagnostics;
+using System.Xml.Schema;
 
 namespace Posit
 {
     public class Storage
     {
+        private Int32 _maxId = 0;
+
         public Storage() { }
 
         public ObservableCollection<Activity> Activities
@@ -35,6 +38,11 @@ namespace Posit
                 foreach (XmlNode node in root.ChildNodes)
                 {
                     XmlElement xmlElement = (XmlElement) node;
+                    Int32 id = int.Parse(xmlElement.GetAttribute("Id"));
+                    if (id > _maxId)
+                    {
+                        _maxId = id;
+                    }
                     string name = xmlElement.GetAttribute("Name");
                     string dateTimeStr = xmlElement.GetAttribute("DateTime");
                     if (!CheckNameAndDateTime(name, dateTimeStr, out DateTime? time))
@@ -43,6 +51,7 @@ namespace Posit
                     }
                     activities.Add(new Activity
                     {
+                        ID = id,
                         ActivityName = name,
                         ActivityTime = (DateTime) time
                     });
@@ -56,11 +65,14 @@ namespace Posit
                 doc.AppendChild(root);
                 foreach (Activity activity in value)
                 {
+                    string id = activity.ID.ToString();
                     string name = activity.ActivityName;
                     string time = activity.ActivityTime.ToString();
                     XmlElement ele = doc.CreateElement("Activity");
+                    ele.Attributes.Append(doc.CreateAttribute("Id"));
                     ele.Attributes.Append(doc.CreateAttribute("Name"));
                     ele.Attributes.Append(doc.CreateAttribute("DateTime"));
+                    ele.SetAttribute("Id", id);
                     ele.SetAttribute("Name", name);
                     ele.SetAttribute("DateTime", time);
                     root.AppendChild(ele);
@@ -68,6 +80,11 @@ namespace Posit
                 string path = ConfigurationManager.AppSettings["DataPath"];
                 doc.Save(path);
             }
+        }
+
+        public Int32 MaxId
+        {
+            get { return _maxId; }
         }
 
         private bool CheckNameAndDateTime(string name, string dateTimeStr, out DateTime? time)
