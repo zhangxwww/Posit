@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -12,9 +13,18 @@ namespace Posit
     {
         private DateTime _activityTime;
         private string _activityName;
-        private string _lastDays;
+        private Int32 _lastDays;
+        private string _lastDaysStr;
 
         public Activity() { }
+
+        public void UpdateLastDays()
+        {
+            TimeSpan span = _activityTime - DateTime.Now;
+            _lastDays = span.Days;
+            _lastDaysStr = $"{_lastDays}天";
+            OnPropertyChanged("LastDaysStr");
+        }
 
         public string ActivityName
         {
@@ -28,25 +38,28 @@ namespace Posit
 
         public DateTime ActivityTime
         {
-            get { return _activityTime; }
             set
             {
                 _activityTime = value;
-                TimeSpan span = _activityTime - DateTime.Now;
-                Int32 last = span.Days;
-                _lastDays = $"{last}天";
+                UpdateLastDays();
             }
         }
 
-        public string LastDays
+        public Int32 LastDays
         {
             get { return _lastDays; }
+        }
+
+        public string LastDaysStr
+        {
+            get { return _lastDaysStr; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
+            Debug.Print(propertyName);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

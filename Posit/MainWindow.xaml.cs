@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Posit
 {
@@ -22,8 +23,9 @@ namespace Posit
     public partial class MainWindow : Window
     {
         private ObservableCollection<Activity> _activityList;
+        private DispatcherTimer timer;
 
-        public MainWindow ()
+        public MainWindow()
         {
             InitializeComponent();
             InitActivityList();
@@ -36,7 +38,21 @@ namespace Posit
             newActivityWidget.AddClicked += AddActivity;
             newActivityWidget.Visibility = Visibility.Collapsed;
 
-            addButton.Click += OnAddButtonClick;
+            addButton.Click += new RoutedEventHandler((sender, e) =>
+            {
+                newActivityWidget.Visibility = Visibility.Visible;
+                addButton.Visibility = Visibility.Collapsed;
+            });
+
+            timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMinutes(30)
+            };
+            timer.Tick += new EventHandler((sender, e) =>
+            {
+                UpdateActivities();
+            });
+            timer.Start();
         }
 
         private void InitActivityList()
@@ -50,9 +66,8 @@ namespace Posit
 
         private void AddActivity(Activity activity)
         {
-            ObservableCollection<Activity> tmp = new ObservableCollection<Activity>(_activityList);
-            tmp.Add(activity);
-            tmp = new ObservableCollection<Activity>(tmp.OrderBy(item => item.ActivityTime));
+            _activityList.Add(activity);
+            ObservableCollection<Activity> tmp = new ObservableCollection<Activity>(_activityList.OrderBy(item => item.LastDays));
             _activityList.Clear();
             foreach (Activity a in tmp)
             {
@@ -62,10 +77,16 @@ namespace Posit
             addButton.Visibility = Visibility.Visible;
         }
 
-        private void OnAddButtonClick(object sender, RoutedEventArgs e)
+        private void UpdateActivities()
         {
-            newActivityWidget.Visibility = Visibility.Visible;
-            addButton.Visibility = Visibility.Collapsed;
+            foreach (Activity activity in _activityList)
+            {
+                activity.UpdateLastDays();
+            }
+            while (_activityList.Count > 0 && _activityList[0].LastDays < 0)
+            {
+                _activityList.RemoveAt(0);
+            }
         }
     }
 }

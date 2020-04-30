@@ -30,7 +30,7 @@
                             <TextBlock
                                 Margin="16 16 12 8"
                                 FontSize="16"
-                                Text="{Binding Path=LastDays,
+                                Text="{Binding Path=LastDaysStr,
                                     UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </materialDesign:Card>

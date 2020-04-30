@@ -30,29 +30,27 @@ namespace Posit
             futureDatePickerWidget.BlackoutDates.AddDatesInPast();
             futureDatePickerWidget.DataContext = new PickersViewModel();
 
-            addButton.Click += OnClickAdd;
-            closeButton.Click += OnClickClose;
+            addButton.Click += new RoutedEventHandler((sender, e) =>
+            {
+                Debug.Print("add");
+                string name = (activityNameTextBox.DataContext as ActivityNameViewModel).ActivityName;
+                if (name == null)
+                { return; }
+                DateTime? time = (futureDatePickerWidget.DataContext as PickersViewModel).FutureValidatingDate;
+                AddClicked(new Activity { ActivityName = name, ActivityTime = (DateTime) time });
+                Clear();
+            });
+
+            closeButton.Click += new RoutedEventHandler((sender, e) =>
+            {
+                Debug.Print("close");
+                Clear();
+            });
         }
 
         public delegate void AddActivity (Activity activity);
 
         public event AddActivity AddClicked;
-
-        private void OnClickAdd(object sender, RoutedEventArgs e)
-        {
-            Debug.Print("add");
-            string name = (activityNameTextBox.DataContext as ActivityNameViewModel).ActivityName;
-            if (name == null) { return; }
-            DateTime? time = (futureDatePickerWidget.DataContext as PickersViewModel).FutureValidatingDate;
-            AddClicked(new Activity { ActivityName = name, ActivityTime = (DateTime) time });
-            Clear();
-        }
-
-        private void OnClickClose(object sender, RoutedEventArgs e)
-        {
-            Debug.Print("close");
-            Clear();
-        }
 
         private void Clear()
         {
