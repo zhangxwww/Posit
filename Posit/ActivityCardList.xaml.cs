@@ -48,7 +48,6 @@ namespace Posit
             activity.ID = ++_lastUsedId;
             _activityList.Add(activity);
             SortActivitiesByDate();
-            storage.Activities = _activityList;
         }
 
         public void UpdateActivities()
@@ -61,6 +60,11 @@ namespace Posit
             {
                 _activityList.RemoveAt(0);
             }
+        }
+
+        public void Save()
+        {
+            storage.Activities = _activityList;
         }
 
         private void SortActivitiesByDate()

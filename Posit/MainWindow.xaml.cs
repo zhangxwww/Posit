@@ -53,6 +53,7 @@ namespace Posit
             timer.Tick += new EventHandler((sender, e) =>
             {
                 UpdateActivities();
+                activityCardListWidget.Save();
             });
         }
 
