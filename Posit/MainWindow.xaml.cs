@@ -22,71 +22,50 @@ namespace Posit
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<Activity> _activityList;
-        private DispatcherTimer timer;
+        private readonly DispatcherTimer timer;
 
         public MainWindow()
         {
             InitializeComponent();
-            InitActivityList();
+            InitWidgets();
 
-            activityCardListWidget.activityCardList.DataContext = new ActivityDataModel
-            {
-                ActivityList = _activityList
-            };
+            timer = new DispatcherTimer();
 
-            newActivityWidget.AddClicked += AddActivity;
+            BindEvent();
+
+            timer.Start();
+        }
+
+        private void InitWidgets()
+        {
             newActivityWidget.Visibility = Visibility.Collapsed;
+        }
 
+        private void BindEvent()
+        {
+            newActivityWidget.AddClicked += AddActivity;
             addButton.Click += new RoutedEventHandler((sender, e) =>
             {
                 newActivityWidget.Visibility = Visibility.Visible;
                 addButton.Visibility = Visibility.Collapsed;
             });
-
-            timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromMinutes(30)
-            };
+            timer.Interval = TimeSpan.FromMinutes(30);
             timer.Tick += new EventHandler((sender, e) =>
             {
                 UpdateActivities();
             });
-            timer.Start();
-        }
-
-        private void InitActivityList()
-        {
-            _activityList = new ObservableCollection<Activity>
-            {
-                new Activity { ActivityName="写作业", ActivityTime=DateTime.Parse("2020/5/1") },
-                new Activity { ActivityName="hello world", ActivityTime=DateTime.Parse("2020/6/1") }
-            };
         }
 
         private void AddActivity(Activity activity)
         {
-            _activityList.Add(activity);
-            ObservableCollection<Activity> tmp = new ObservableCollection<Activity>(_activityList.OrderBy(item => item.LastDays));
-            _activityList.Clear();
-            foreach (Activity a in tmp)
-            {
-                _activityList.Add(a);
-            }
+            activityCardListWidget.Add(activity);
             newActivityWidget.Visibility = Visibility.Collapsed;
             addButton.Visibility = Visibility.Visible;
         }
 
         private void UpdateActivities()
         {
-            foreach (Activity activity in _activityList)
-            {
-                activity.UpdateLastDays();
-            }
-            while (_activityList.Count > 0 && _activityList[0].LastDays < 0)
-            {
-                _activityList.RemoveAt(0);
-            }
+            activityCardListWidget.UpdateActivities();
         }
     }
 }

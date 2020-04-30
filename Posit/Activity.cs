@@ -38,6 +38,7 @@ namespace Posit
 
         public DateTime ActivityTime
         {
+            get { return _activityTime; }
             set
             {
                 _activityTime = value;
