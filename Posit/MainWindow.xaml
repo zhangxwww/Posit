@@ -14,6 +14,7 @@
         AllowsTransparency="True"
         BorderThickness="1"
         Background="#01FFFFFF"
+        Topmost="True"
         WindowStartupLocation="CenterScreen">
     <Grid >
         <StackPanel

@@ -55,6 +55,7 @@ namespace Posit
 
             System.Windows.Forms.MenuItem show = new System.Windows.Forms.MenuItem("Show") { Checked = true, Enabled = false };
             System.Windows.Forms.MenuItem hide = new System.Windows.Forms.MenuItem("Hide");
+            System.Windows.Forms.MenuItem topMost = new System.Windows.Forms.MenuItem("Top Most") { Checked = true };
             System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("Exit");
 
             show.Click += new EventHandler((sender, e) =>
@@ -64,6 +65,10 @@ namespace Posit
             hide.Click += new EventHandler((sender, e) =>
             {
                 HideWindow(show, hide);
+            });
+            topMost.Click += new EventHandler((sender, e) =>
+            {
+                SwitchTopMost(topMost);
             });
             exit.Click += new EventHandler((sender, e) =>
             {
@@ -75,7 +80,7 @@ namespace Posit
                 Text = "Posit",
                 Visible = true,
                 Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath),
-                ContextMenu = new System.Windows.Forms.ContextMenu(new System.Windows.Forms.MenuItem[] { show, hide, exit })
+                ContextMenu = new System.Windows.Forms.ContextMenu(new System.Windows.Forms.MenuItem[] { show, hide, topMost, exit })
             };
             notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler((sender, e) =>
             {
@@ -165,6 +170,20 @@ namespace Posit
             show.Enabled = true;
             hide.Checked = true;
             hide.Enabled = false;
+        }
+
+        private void SwitchTopMost(System.Windows.Forms.MenuItem topMost)
+        {
+            if (topMost.Checked)
+            {
+                topMost.Checked = false;
+                Topmost = false;
+            }
+            else
+            {
+                topMost.Checked = true;
+                Topmost = true;
+            }
         }
 
         private void ExitWindow()
