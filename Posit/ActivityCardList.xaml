@@ -33,6 +33,20 @@
                                 Text="{Binding Path=LastDaysStr,
                                     UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
+                        <materialDesign:Card.ContextMenu>
+                            <ContextMenu
+                                x:Name="menu"
+                                StaysOpen="True">
+                                <MenuItem 
+                                    x:Name="editMenuItem"
+                                    Header="Edit"
+                                    Click="EditItemClicked"/>
+                                <MenuItem 
+                                    x:Name="deleteMenuItem"
+                                    Header="Delete"
+                                    Click="DeleteItemClicked"/>
+                            </ContextMenu>
+                        </materialDesign:Card.ContextMenu>
                     </materialDesign:Card>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

@@ -48,6 +48,12 @@ namespace Posit
             });
         }
 
+        public void SetDefaultValueAs(Activity activity)
+        {
+            activityNameTextBox.Text = activity.ActivityName;
+            futureDatePickerWidget.SelectedDate = activity.ActivityTime;
+        }
+
         public delegate void AddActivity (Activity activity);
 
         public event AddActivity AddClicked;
@@ -55,6 +61,7 @@ namespace Posit
         private void Clear()
         {
             activityNameTextBox.Clear();
+            futureDatePickerWidget.SelectedDate = DateTime.Now;
         }
 
     }

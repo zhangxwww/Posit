@@ -44,10 +44,10 @@ namespace Posit
         private void BindEvent()
         {
             newActivityWidget.AddClicked += AddActivity;
+            activityCardListWidget.EditActivityEvent += EditClicked;
             addButton.Click += new RoutedEventHandler((sender, e) =>
             {
-                newActivityWidget.Visibility = Visibility.Visible;
-                addButton.Visibility = Visibility.Collapsed;
+                ShowNewField();
             });
             timer.Interval = TimeSpan.FromMinutes(30);
             timer.Tick += new EventHandler((sender, e) =>
@@ -68,9 +68,21 @@ namespace Posit
             addButton.Visibility = Visibility.Visible;
         }
 
+        private void EditClicked(Activity activity)
+        {
+            newActivityWidget.SetDefaultValueAs(activity);
+            ShowNewField();
+        }
+
         private void UpdateActivities()
         {
             activityCardListWidget.UpdateActivities();
+        }
+
+        private void ShowNewField()
+        {
+            newActivityWidget.Visibility = Visibility.Visible;
+            addButton.Visibility = Visibility.Collapsed;
         }
     }
 }

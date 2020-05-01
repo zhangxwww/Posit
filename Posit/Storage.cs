@@ -99,7 +99,7 @@ namespace Posit
                 time = null;
                 return false;
             }
-            time = t;
+            time = t.Date;
             if (((TimeSpan)(time - DateTime.Now)).Days < 0)
             {
                 return false;

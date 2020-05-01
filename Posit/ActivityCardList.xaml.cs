@@ -50,15 +50,27 @@ namespace Posit
             SortActivitiesByDate();
         }
 
-        public void Update(Int32 id, string name, DateTime? time)
+        public void Delete(Activity activity)
         {
-            // TODO
+            _activityList.Remove(activity);
         }
 
-        public void Delete(Int32 id)
+        private void EditItemClicked(object sender, RoutedEventArgs e)
         {
-            // TODO
+            Activity activity = (e.Source as MenuItem).DataContext as Activity;
+            EditActivityEvent(activity);
+            Delete(activity);
         }
+
+        private void DeleteItemClicked(object sender, RoutedEventArgs e)
+        {
+            Activity activity = (e.Source as MenuItem).DataContext as Activity;
+            Delete(activity);
+        }
+
+        public delegate void EditActivity(Activity activity);
+
+        public event EditActivity EditActivityEvent;
 
         public void UpdateActivities()
         {
