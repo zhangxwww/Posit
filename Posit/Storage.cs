@@ -8,6 +8,7 @@ using System.Xml;
 using System.Configuration;
 using System.Diagnostics;
 using System.Xml.Schema;
+using System.IO;
 
 namespace Posit
 {
@@ -29,9 +30,15 @@ namespace Posit
                 {
                     doc.Load(path);
                 }
-                catch (XmlException e)
+                catch (FileNotFoundException e)
                 {
                     Debug.Print(e.Message);
+                    activities.Add(new Activity 
+                    { 
+                        ID = 0, 
+                        ActivityName = "Hello world", 
+                        ActivityTime = DateTime.Now.AddDays(1) 
+                    });
                     return activities;
                 }
                 XmlElement root = doc.DocumentElement;

@@ -34,9 +34,9 @@ namespace Posit
             {
                 Debug.Print("add");
                 string name = (activityNameTextBox.DataContext as ActivityNameViewModel).ActivityName;
-                if (name == null)
-                { return; }
+                if (name == null || name.Equals("")) { return; }
                 DateTime? time = (futureDatePickerWidget.DataContext as PickersViewModel).FutureValidatingDate;
+                if (time == null) { return; }
                 AddClicked(new Activity { ActivityName = name, ActivityTime = (DateTime) time });
                 Clear();
             });

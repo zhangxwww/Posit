@@ -26,10 +26,12 @@
                     <Binding
                         Path="ActivityName"
                         UpdateSourceTrigger="PropertyChanged">
+                        <!--
                         <Binding.ValidationRules>
                             <local:NotEmptyValidationRule
                                 ValidatesOnTargetUpdated="True"/>
                         </Binding.ValidationRules>
+                        -->
                     </Binding>
                 </TextBox.Text>
             </TextBox>
