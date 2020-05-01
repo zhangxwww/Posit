@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace Posit
 {
@@ -25,11 +27,13 @@ namespace Posit
     public partial class MainWindow : Window
     {
         private readonly DispatcherTimer timer;
+        private NotifyIcon notifyIcon;
 
         public MainWindow()
         {
             InitializeComponent();
-            InitWidgets();
+            InitWidget();
+            InitNotifyIcon();
 
             timer = new DispatcherTimer();
 
@@ -38,9 +42,46 @@ namespace Posit
             timer.Start();
         }
 
-        private void InitWidgets()
+        private void InitWidget()
         {
-            newActivityWidget.Visibility = Visibility.Collapsed;
+            UnShowNewField();
+        }
+
+        private void InitNotifyIcon()
+        {
+            ShowInTaskbar = false;
+
+            System.Windows.Forms.MenuItem show = new System.Windows.Forms.MenuItem("Show") { Checked = true, Enabled = false };
+            System.Windows.Forms.MenuItem hide = new System.Windows.Forms.MenuItem("Hide");
+            System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("Exit");
+
+            show.Click += new EventHandler((sender, e) =>
+            {
+                ShowWindow(show, hide);
+            });
+            hide.Click += new EventHandler((sender, e) =>
+            {
+                HideWindow(show, hide);
+            });
+            exit.Click += new EventHandler((sender, e) =>
+            {
+                ExitWindow();
+            });
+
+            notifyIcon = new NotifyIcon
+            {
+                Text = "Posit",
+                Visible = true,
+                Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath),
+                ContextMenu = new System.Windows.Forms.ContextMenu(new System.Windows.Forms.MenuItem[] { show, hide, exit })
+            };
+            notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler((sender, e) =>
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    ShowWindow(show, hide);
+                }
+            });
         }
 
         private void BindEvent()
@@ -51,7 +92,7 @@ namespace Posit
             });
             Loaded += new RoutedEventHandler((sender, e) =>
             {
-                BlurHelper.EnableBlur(this);
+                //BlurHelper.EnableBlur(this);
             });
             newActivityWidget.AddClicked += AddActivity;
             newActivityWidget.CancelClicked += UnShowNewField;
@@ -99,6 +140,30 @@ namespace Posit
         {
             newActivityWidget.Visibility = Visibility.Collapsed;
             addButton.Visibility = Visibility.Visible;
+        }
+
+        private void ShowWindow(System.Windows.Forms.MenuItem show, System.Windows.Forms.MenuItem hide)
+        {
+            Visibility = System.Windows.Visibility.Visible;
+            Activate();
+            show.Checked = true;
+            show.Enabled = false;
+            hide.Checked = false;
+            hide.Enabled = true;
+        }
+
+        private void HideWindow(System.Windows.Forms.MenuItem show, System.Windows.Forms.MenuItem hide)
+        {
+            Visibility = System.Windows.Visibility.Hidden;
+            show.Checked = false;
+            show.Enabled = true;
+            hide.Checked = true;
+            hide.Enabled = false;
+        }
+
+        private void ExitWindow()
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

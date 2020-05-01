@@ -12,10 +12,10 @@ namespace Posit
             if (!DateTime.TryParse((value ?? "").ToString(),
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.AssumeLocal | DateTimeStyles.AllowWhiteSpaces,
-                out time)) return new ValidationResult(false, "Invalid date");
+                out time)) return new ValidationResult(false, "");
 
             return time.Date < DateTime.Now.Date
-                ? new ValidationResult(false, "Future date required")
+                ? new ValidationResult(false, "")
                 : ValidationResult.ValidResult;
         }
     }

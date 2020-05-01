@@ -8,7 +8,7 @@ namespace Posit
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             return string.IsNullOrWhiteSpace((value ?? "").ToString())
-                ? new ValidationResult(false, "Field is required.")
+                ? new ValidationResult(false, "")
                 : ValidationResult.ValidResult;
         }
     }
