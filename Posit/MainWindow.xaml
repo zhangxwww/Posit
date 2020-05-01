@@ -13,11 +13,11 @@
         WindowStyle="None"
         AllowsTransparency="True"
         BorderThickness="1"
-        Background="#72FFFFFF"
+        Background="#01FFFFFF"
         WindowStartupLocation="CenterScreen">
     <Grid >
         <StackPanel
-            Margin="0 5 0 5">
+            Margin="0 2 0 3">
             <local:ActivityCardList 
                 x:Name="activityCardListWidget"/>
             <Button

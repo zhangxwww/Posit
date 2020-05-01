@@ -24,7 +24,7 @@
                         UniformCornerRadius="6">
                         <StackPanel
                             Orientation="Horizontal"
-                            Margin="5 3 5 3">
+                            Margin="5 0 5 0">
                             <TextBlock
                                 Margin="2 2 2 2"
                                 FontSize="14"
