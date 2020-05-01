@@ -50,6 +50,16 @@ namespace Posit
             SortActivitiesByDate();
         }
 
+        public void Update(Int32 id, string name, DateTime? time)
+        {
+            // TODO
+        }
+
+        public void Delete(Int32 id)
+        {
+            // TODO
+        }
+
         public void UpdateActivities()
         {
             foreach (Activity activity in _activityList)

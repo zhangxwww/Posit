@@ -55,6 +55,10 @@ namespace Posit
                 UpdateActivities();
                 activityCardListWidget.Save();
             });
+            Closing += new System.ComponentModel.CancelEventHandler((sender, e) =>
+            {
+                activityCardListWidget.Save();
+            });
         }
 
         private void AddActivity(Activity activity)

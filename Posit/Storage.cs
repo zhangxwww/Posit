@@ -100,7 +100,11 @@ namespace Posit
                 return false;
             }
             time = t;
-            if (time < DateTime.Now || name.Equals(""))
+            if (((TimeSpan)(time - DateTime.Now)).Days < 0)
+            {
+                return false;
+            }
+            if (name.Equals(""))
             {
                 return false;
             }
