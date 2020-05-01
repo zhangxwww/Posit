@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -43,6 +45,14 @@ namespace Posit
 
         private void BindEvent()
         {
+            MouseLeftButtonDown += new MouseButtonEventHandler((sender, e) =>
+            {
+                DragMove();
+            });
+            Loaded += new RoutedEventHandler((sender, e) =>
+            {
+                BlurHelper.EnableBlur(this);
+            });
             newActivityWidget.AddClicked += AddActivity;
             newActivityWidget.CancelClicked += UnShowNewField;
             activityCardListWidget.EditActivityEvent += EditClicked;

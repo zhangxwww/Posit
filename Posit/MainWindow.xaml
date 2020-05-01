@@ -1,4 +1,5 @@
-﻿<Window x:Class="Posit.MainWindow"
+﻿<Window
+    x:Class="Posit.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,16 +7,23 @@
         xmlns:local="clr-namespace:Posit"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow"
-        Width="250"
-        SizeToContent="Height" >
-    <Grid>
+        Title="Posit"
+        Width="210"
+        SizeToContent="Height"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        BorderThickness="1"
+        Background="#72FFFFFF"
+        WindowStartupLocation="CenterScreen">
+    <Grid >
         <StackPanel
-            Margin="16 16 16 16">
+            Margin="0 5 0 5">
             <local:ActivityCardList 
                 x:Name="activityCardListWidget"/>
             <Button
                 x:Name="addButton"
+                Height="30"
+                Width="30"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 ToolTip="MaterialDesignFloatingActionMiniLightButton">
                 <materialDesign:PackIcon

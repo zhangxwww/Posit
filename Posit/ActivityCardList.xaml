@@ -10,7 +10,7 @@
     <Grid>
         <ItemsControl 
                 x:Name="activityCardList"
-                Margin="0 0 0 5"
+                Margin="0 0 0 3"
                 ItemsSource="{Binding Path=ActivityList}">
             <ItemsControl.ItemTemplate >
                 <DataTemplate >
@@ -20,20 +20,20 @@
                         Width="200"
                         Height="auto"
                         Padding="2"
-                        Margin="0 2 0 3"
+                        Margin="0 0 0 5"
                         UniformCornerRadius="6">
                         <StackPanel
                             Orientation="Horizontal"
-                            Margin="4 4 4 4">
+                            Margin="5 3 5 3">
                             <TextBlock
-                                Margin="4 4 4 4"
-                                FontSize="12"
-                                Width="120"
+                                Margin="2 2 2 2"
+                                FontSize="14"
+                                Width="135"
                                 Text="{Binding Path=ActivityName,
                                     UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock
-                                Margin="4 4 4 4"
-                                FontSize="12"
+                                Margin="2 2 2 2"
+                                FontSize="14"
                                 Width="40"
                                 TextAlignment="Right"
                                 Text="{Binding Path=LastDaysStr,

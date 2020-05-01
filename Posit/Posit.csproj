@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BlurHelper.cs" />
     <Compile Include="Storage.cs" />
     <Page Include="ActivityCardList.xaml">
       <SubType>Designer</SubType>
