@@ -10,26 +10,32 @@
     <Grid>
         <ItemsControl 
                 x:Name="activityCardList"
+                Margin="0 0 0 5"
                 ItemsSource="{Binding Path=ActivityList}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
+            <ItemsControl.ItemTemplate >
+                <DataTemplate >
                     <materialDesign:Card
                         Background="#03a9f4"
                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                         Width="200"
-                        Padding="8"
+                        Height="auto"
+                        Padding="2"
+                        Margin="0 2 0 3"
                         UniformCornerRadius="6">
                         <StackPanel
                             Orientation="Horizontal"
-                            Margin="16 0 16 8">
+                            Margin="4 4 4 4">
                             <TextBlock
-                                Margin="16 16 12 8"
-                                FontSize="16"
+                                Margin="4 4 4 4"
+                                FontSize="12"
+                                Width="120"
                                 Text="{Binding Path=ActivityName,
                                     UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock
-                                Margin="16 16 12 8"
-                                FontSize="16"
+                                Margin="4 4 4 4"
+                                FontSize="12"
+                                Width="40"
+                                TextAlignment="Right"
                                 Text="{Binding Path=LastDaysStr,
                                     UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>

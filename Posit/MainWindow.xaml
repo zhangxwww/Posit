@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:Posit"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        Width="250"
+        SizeToContent="Height" >
     <Grid>
         <StackPanel
             Margin="16 16 16 16">
