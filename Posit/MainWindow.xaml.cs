@@ -44,6 +44,7 @@ namespace Posit
         private void BindEvent()
         {
             newActivityWidget.AddClicked += AddActivity;
+            newActivityWidget.CancelClicked += UnShowNewField;
             activityCardListWidget.EditActivityEvent += EditClicked;
             addButton.Click += new RoutedEventHandler((sender, e) =>
             {
@@ -64,8 +65,7 @@ namespace Posit
         private void AddActivity(Activity activity)
         {
             activityCardListWidget.Add(activity);
-            newActivityWidget.Visibility = Visibility.Collapsed;
-            addButton.Visibility = Visibility.Visible;
+            UnShowNewField();
         }
 
         private void EditClicked(Activity activity)
@@ -83,6 +83,12 @@ namespace Posit
         {
             newActivityWidget.Visibility = Visibility.Visible;
             addButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void UnShowNewField()
+        {
+            newActivityWidget.Visibility = Visibility.Collapsed;
+            addButton.Visibility = Visibility.Visible;
         }
     }
 }

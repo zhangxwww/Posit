@@ -40,11 +40,21 @@
                                 <MenuItem 
                                     x:Name="editMenuItem"
                                     Header="Edit"
-                                    Click="EditItemClicked"/>
+                                    Click="EditItemClicked">
+                                    <MenuItem.Icon>
+                                        <materialDesign:PackIcon
+                                            Kind="SquareEditOutline"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
                                 <MenuItem 
                                     x:Name="deleteMenuItem"
                                     Header="Delete"
-                                    Click="DeleteItemClicked"/>
+                                    Click="DeleteItemClicked">
+                                    <MenuItem.Icon>
+                                        <materialDesign:PackIcon
+                                            Kind="DeleteForeverOutline"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
                             </ContextMenu>
                         </materialDesign:Card.ContextMenu>
                     </materialDesign:Card>

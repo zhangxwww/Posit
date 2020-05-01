@@ -44,6 +44,7 @@ namespace Posit
             closeButton.Click += new RoutedEventHandler((sender, e) =>
             {
                 Debug.Print("close");
+                CancelClicked();
                 Clear();
             });
         }
@@ -55,8 +56,10 @@ namespace Posit
         }
 
         public delegate void AddActivity (Activity activity);
+        public delegate void Cancel();
 
         public event AddActivity AddClicked;
+        public event Cancel CancelClicked;
 
         private void Clear()
         {
