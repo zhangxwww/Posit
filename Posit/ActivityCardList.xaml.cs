@@ -68,6 +68,13 @@ namespace Posit
             Delete(activity);
         }
 
+        private void MouseDoubleClicked(object sender, MouseEventArgs e)
+        {
+            Activity activity = (e.Source as MaterialDesignThemes.Wpf.Card).DataContext as Activity;
+            EditActivityEvent(activity);
+            Delete(activity);
+        }
+
         public delegate void EditActivity(Activity activity);
 
         public event EditActivity EditActivityEvent;
