@@ -26,7 +26,9 @@ namespace Posit
     /// </summary>
     public partial class MainWindow : Window
     {
+        // timing to save
         private readonly DispatcherTimer timer;
+
         private NotifyIcon notifyIcon;
 
         public MainWindow()
@@ -86,13 +88,15 @@ namespace Posit
 
         private void BindEvent()
         {
+            // Drag the window by left mouse button
             MouseLeftButtonDown += new MouseButtonEventHandler((sender, e) =>
             {
                 DragMove();
             });
+            // Blur style
             Loaded += new RoutedEventHandler((sender, e) =>
             {
-                //BlurHelper.EnableBlur(this);
+                // BlurHelper.EnableBlur(this);
             });
             newActivityWidget.AddClicked += AddActivity;
             newActivityWidget.CancelClicked += UnShowNewField;
@@ -101,12 +105,14 @@ namespace Posit
             {
                 ShowNewField();
             });
+            // Save for every 30 minutes
             timer.Interval = TimeSpan.FromMinutes(30);
             timer.Tick += new EventHandler((sender, e) =>
             {
                 UpdateActivities();
                 activityCardListWidget.Save();
             });
+            // Save before exit
             Closing += new System.ComponentModel.CancelEventHandler((sender, e) =>
             {
                 activityCardListWidget.Save();

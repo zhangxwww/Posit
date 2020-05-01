@@ -22,14 +22,14 @@
                 x:Name="activityCardListWidget"/>
             <Button
                 x:Name="addButton"
-                Height="30"
-                Width="30"
+                Height="25"
+                Width="25"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 ToolTip="MaterialDesignFloatingActionMiniLightButton">
                 <materialDesign:PackIcon
                     Kind="AddThick"
-                    Height="24"
-                    Width="24" />
+                    Height="20"
+                    Width="20" />
             </Button>
             <local:NewActivityFields
                 x:Name="newActivityWidget"/>
