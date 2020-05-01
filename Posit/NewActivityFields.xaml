@@ -64,8 +64,7 @@
                 Width="25"
                 Height="25"
                 Background="#9baec8"
-                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
                 <materialDesign:PackIcon
                     Kind="Check"
                     Foreground="#292c37"
@@ -78,8 +77,7 @@
                 Width="25"
                 Height="25"
                 Background="#9baec8"
-                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
                 <materialDesign:PackIcon
                     Kind="Close"
                     Foreground="#292c37"

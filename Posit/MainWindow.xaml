@@ -26,8 +26,7 @@
                 Height="25"
                 Width="25"
                 Background="#9baec8"
-                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
                 <materialDesign:PackIcon
                     Kind="AddThick"
                     Foreground="#282c37"
