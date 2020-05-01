@@ -24,10 +24,12 @@
                 x:Name="addButton"
                 Height="25"
                 Width="25"
+                Background="#9baec8"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 ToolTip="MaterialDesignFloatingActionMiniLightButton">
                 <materialDesign:PackIcon
                     Kind="AddThick"
+                    Foreground="#282c37"
                     Height="20"
                     Width="20" />
             </Button>

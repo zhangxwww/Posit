@@ -15,8 +15,8 @@
             <ItemsControl.ItemTemplate >
                 <DataTemplate >
                     <materialDesign:Card
-                        Background="#03a9f4"
-                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Background="#2d90d9"
+                        Foreground="#d9e1e8"
                         Width="150"
                         Height="auto"
                         Padding="2"

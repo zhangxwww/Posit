@@ -20,6 +20,7 @@
                 Grid.Row="0">
             <TextBox
                 x:Name="activityNameTextBox"
+                materialDesign:HintAssist.Hint="事件名称"
                 Width="140"
                 Margin="5 0 5 5">
                 <TextBox.Text>
@@ -62,10 +63,12 @@
                 Margin="40 0 5 0"
                 Width="25"
                 Height="25"
+                Background="#9baec8"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 ToolTip="MaterialDesignFloatingActionMiniLightButton">
                 <materialDesign:PackIcon
                     Kind="Check"
+                    Foreground="#292c37"
                     Height="20"
                     Width="20" />
             </Button>
@@ -74,10 +77,12 @@
                 Margin="5 0 40 0"
                 Width="25"
                 Height="25"
+                Background="#9baec8"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 ToolTip="MaterialDesignFloatingActionMiniLightButton">
                 <materialDesign:PackIcon
                     Kind="Close"
+                    Foreground="#292c37"
                     Height="20"
                     Width="20" />
             </Button>
