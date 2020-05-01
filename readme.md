@@ -28,4 +28,4 @@ Open the solution in visual studio and just build it.
 
 ## License
 
-MIT license
+MIT License
