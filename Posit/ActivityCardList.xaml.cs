@@ -85,7 +85,7 @@ namespace Posit
             {
                 activity.UpdateLastDays();
             }
-            while (_activityList.Count > 0 && _activityList[0].LastDays < 0)
+            while (_activityList.Count > 0 && _activityList[0].OutOfDate)
             {
                 _activityList.RemoveAt(0);
             }

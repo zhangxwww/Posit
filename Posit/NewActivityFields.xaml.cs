@@ -37,7 +37,8 @@ namespace Posit
                 if (name == null || name.Equals("")) { return; }
                 DateTime? time = (futureDatePickerWidget.DataContext as PickersViewModel).FutureValidatingDate;
                 if (time == null) { return; }
-                AddClicked(new Activity { ActivityName = name, ActivityTime = (DateTime) time });
+                DateTime selected = ((DateTime) time).AddDays(1).AddSeconds(-1);
+                AddClicked(new Activity { ActivityName = name, ActivityTime = selected });
                 Clear();
             });
 

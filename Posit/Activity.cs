@@ -16,14 +16,22 @@ namespace Posit
         private string _activityName;
         private Int32 _lastDays;
         private string _lastDaysStr;
+        private bool _outOfDate;
 
-        public Activity() { }
+        public Activity() 
+        {
+            _outOfDate = false;
+        }
 
         public void UpdateLastDays()
         {
             TimeSpan span = _activityTime - DateTime.Now;
             _lastDays = span.Days;
             _lastDaysStr = $"{_lastDays}天";
+            if (span.TotalDays < 0)
+            {
+                _outOfDate = true;
+            }
             OnPropertyChanged("LastDaysStr");
         }
 
@@ -61,6 +69,11 @@ namespace Posit
         public string LastDaysStr
         {
             get { return _lastDaysStr; }
+        }
+
+        public bool OutOfDate
+        {
+            get { return _outOfDate; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
