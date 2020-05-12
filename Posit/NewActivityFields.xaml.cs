@@ -53,7 +53,7 @@ namespace Posit
         public void SetDefaultValueAs(Activity activity)
         {
             activityNameTextBox.Text = activity.ActivityName;
-            futureDatePickerWidget.SelectedDate = activity.ActivityTime;
+            futureDatePickerWidget.SelectedDate = activity.ActivityTime.Date;
         }
 
         public delegate void AddActivity (Activity activity);
