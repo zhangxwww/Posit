@@ -56,6 +56,7 @@ namespace Posit
             System.Windows.Forms.MenuItem show = new System.Windows.Forms.MenuItem("Show") { Checked = true, Enabled = false };
             System.Windows.Forms.MenuItem hide = new System.Windows.Forms.MenuItem("Hide");
             System.Windows.Forms.MenuItem topMost = new System.Windows.Forms.MenuItem("Top Most") { Checked = true };
+            System.Windows.Forms.MenuItem remain = new System.Windows.Forms.MenuItem("Remain"); 
             System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("Exit");
 
             show.Click += new EventHandler((sender, e) =>
@@ -69,6 +70,10 @@ namespace Posit
             topMost.Click += new EventHandler((sender, e) =>
             {
                 SwitchTopMost(topMost);
+            });
+            remain.Click += new EventHandler((sender, e) =>
+            {
+                RemainOufOfDate(remain);
             });
             exit.Click += new EventHandler((sender, e) =>
             {
@@ -183,6 +188,20 @@ namespace Posit
             {
                 topMost.Checked = true;
                 Topmost = true;
+            }
+        }
+
+        private void RemainOufOfDate(System.Windows.Forms.MenuItem remain)
+        {
+            if (remain.Checked)
+            {
+                activityCardListWidget.RemainOutOfDate = false;
+                remain.Checked = false;
+            }
+            else
+            {
+                activityCardListWidget.RemainOutOfDate = true;
+                remain.Checked = true;
             }
         }
 

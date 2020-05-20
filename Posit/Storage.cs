@@ -107,10 +107,6 @@ namespace Posit
                 return false;
             }
             time = t.Date;
-            if (((TimeSpan)(time - DateTime.Now)).Days < 0)
-            {
-                return false;
-            }
             if (name.Equals(""))
             {
                 return false;

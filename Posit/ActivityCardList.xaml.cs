@@ -29,6 +29,7 @@ namespace Posit
         {
             InitializeComponent();
             InitActivityList();
+            RemainOutOfDate = false;
         }
 
         private void InitActivityList()
@@ -41,6 +42,7 @@ namespace Posit
                 ActivityList = _activityList
             };
             SortActivitiesByDate();
+            UpdateActivities();
         }
 
         public void Add(Activity activity)
@@ -85,7 +87,7 @@ namespace Posit
             {
                 activity.UpdateLastDays();
             }
-            while (_activityList.Count > 0 && _activityList[0].OutOfDate)
+            while (RemainOutOfDate && _activityList.Count > 0 && _activityList[0].OutOfDate)
             {
                 _activityList.RemoveAt(0);
             }
@@ -105,5 +107,7 @@ namespace Posit
                 _activityList.Add(a);
             }
         }
+
+        public bool RemainOutOfDate { get; set; }
     }
 }
