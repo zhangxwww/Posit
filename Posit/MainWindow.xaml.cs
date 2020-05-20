@@ -56,7 +56,7 @@ namespace Posit
             System.Windows.Forms.MenuItem show = new System.Windows.Forms.MenuItem("Show") { Checked = true, Enabled = false };
             System.Windows.Forms.MenuItem hide = new System.Windows.Forms.MenuItem("Hide");
             System.Windows.Forms.MenuItem topMost = new System.Windows.Forms.MenuItem("Top Most") { Checked = true };
-            System.Windows.Forms.MenuItem remain = new System.Windows.Forms.MenuItem("Remain"); 
+            System.Windows.Forms.MenuItem remain = new System.Windows.Forms.MenuItem("Remain out of date"); 
             System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("Exit");
 
             show.Click += new EventHandler((sender, e) =>
@@ -85,7 +85,7 @@ namespace Posit
                 Text = "Posit",
                 Visible = true,
                 Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath),
-                ContextMenu = new System.Windows.Forms.ContextMenu(new System.Windows.Forms.MenuItem[] { show, hide, topMost, exit })
+                ContextMenu = new System.Windows.Forms.ContextMenu(new System.Windows.Forms.MenuItem[] { show, hide, topMost, remain, exit })
             };
             notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler((sender, e) =>
             {
