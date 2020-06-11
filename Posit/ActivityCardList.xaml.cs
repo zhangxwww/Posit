@@ -27,9 +27,9 @@ namespace Posit
 
         public ActivityCardList ()
         {
+            RemainOutOfDate = false;
             InitializeComponent();
             InitActivityList();
-            RemainOutOfDate = false;
         }
 
         private void InitActivityList()
